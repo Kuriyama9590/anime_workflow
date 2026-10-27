@@ -1,0 +1,75 @@
+{
+  "config_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+  "project": "demo",
+  "schema": 1,
+  "stage": "keyframes",
+  "units": {
+    "S1:first": {
+      "attempts": 1,
+      "channel": "photo",
+      "config_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "error": null,
+      "files": {
+        "first": "S1_first.png"
+      },
+      "inputs_hash": "sha256:5ebc11c71cd102a43d61dbf4a0fd7faa8b9a0d972e5286a52d22b7dd9be812bb",
+      "prompt_id": "293f03f6-c610-4774-9044-45cba2399105",
+      "seed": 20261010,
+      "stage_cfg_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "status": "done",
+      "updated_at": "2026-10-27T00:44:35",
+      "upstream": {}
+    },
+    "S1:last": {
+      "attempts": 1,
+      "channel": "photo",
+      "config_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "error": null,
+      "files": {
+        "last": "S1_last.png"
+      },
+      "inputs_hash": "sha256:25119f5fd19a6c374222120d415669fe6cb846619d59b616a3731db6b5184a17",
+      "prompt_id": "11a542b7-b5ee-4bb7-92ed-1fed8cbf1387",
+      "seed": 20261015,
+      "stage_cfg_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "status": "done",
+      "updated_at": "2026-10-27T00:44:58",
+      "upstream": {
+        "first_png": "S1_first.png|1384677|1793033075521869000"
+      }
+    },
+    "S2:first": {
+      "attempts": 1,
+      "channel": "anime",
+      "config_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "error": null,
+      "files": {
+        "first": "S2_first.png"
+      },
+      "inputs_hash": "sha256:df564960bd9c3ba8cf9d70612416d9dce963eb14e9f20c1771222cae3af9d541",
+      "prompt_id": "589490b3-4d3f-430e-9441-a81ee9f91c15",
+      "seed": 20261020,
+      "stage_cfg_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "status": "done",
+      "updated_at": "2026-10-27T00:45:12",
+      "upstream": {}
+    },
+    "S2:last": {
+      "attempts": 1,
+      "channel": "anime",
+      "config_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "error": null,
+      "files": {
+        "last": "S2_last.png"
+      },
+      "inputs_hash": "sha256:5c2602e2e7c07d5e792f1c6cd025a3455e9a67428d16c9cc1b6221c80d6af64d",
+      "prompt_id": "331e5463-d131-43dd-8a99-097e204000ff",
+      "seed": 20261027,
+      "stage_cfg_hash": "sha256:b33da323e6fd254ad323c7a4d263f808bd236a8a7b66a58a99bd83991ba5d4e5",
+      "status": "done",
+      "updated_at": "2026-10-27T00:45:23",
+      "upstream": {}
+    }
+  },
+  "updated_at": "2026-10-27T00:45:28"
+}

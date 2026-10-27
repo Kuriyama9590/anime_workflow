@@ -1,0 +1,42 @@
+# 分镜表（驱动 keyframes/camera/video/final）。取值优先级：单镜字段 > defaults > config 段默认。
+# 冒烟样例：中性侦探题材，2 镜（办公室看卷宗 / 雨夜街角）；S2 覆盖 anime 通道以冒烟双通道。
+project: samples/demo
+style: photo                  # 项目级回退通道（单镜 style 可覆盖）
+defaults: {duration_s: 5.17, camera: {mode: B, move: push_in, intensity: slow}}
+shots:
+  - id: S1                    # 镜1：办公室·看卷宗（photo 通道，末帧保身份 edit）
+    title: 办公室·看卷宗
+    duration_s: 5.17
+    characters: [detective]
+    style: photo
+    scene: "a cramped private detective office at night, single desk lamp glow, drifting cigarette haze, rain ticking on the window"
+    first: "a trench-coated detective seated at his desk under a single warm desk lamp, reading an open case folder, briefcase resting against the desk leg, papers and a rotary phone scattered on the desk, venetian blind shadows across the wall"
+    last: "he lowers the folder slightly and looks up toward the window, brow furrowed, rain streaks glinting on the glass behind him"
+    last_mode: edit
+    use_char_ref: false
+    props: [case_file, briefcase]
+    camera: {mode: B, move: push_in, intensity: slow, extra: ""}
+    motion: |
+      [0s-2s] desk lamp flickers faintly, cigarette haze drifts through the light cone
+      [2s-5s] he slowly lowers the folder and raises his eyes toward the rain-streaked window
+    audio_hint: "quiet office, rain on glass, distant thunder"
+    negative_extra: ""
+    seed: 0
+  - id: S2                    # 镜2：雨夜街角（anime 通道覆盖，末帧 fresh）
+    title: 雨夜街角
+    duration_s: 5.17
+    characters: [detective]
+    style: anime
+    scene: "a rain-soaked city street corner at night, neon shop signs reflecting in puddles, distant traffic lights smeared by rain"
+    first: "a trench-coated detective standing at a rainy street corner under a flickering streetlamp, briefcase in hand, collar turned up against the rain, wet asphalt mirroring neon signs, a lone taxi's tail lights receding into the mist"
+    last: "the detective walks away from the corner into the rain, back to camera, coat hem swaying, streetlamp light stretching his long shadow across the puddles"
+    last_mode: fresh
+    use_char_ref: false
+    props: [briefcase]
+    camera: {mode: B, move: truck, intensity: medium, extra: ""}
+    motion: |
+      [0s-2s] rain falls steadily, neon reflections ripple in the puddles
+      [2s-5s] the detective turns and walks into the rain, coat hem swaying, tail lights fading
+    audio_hint: "steady rain, distant traffic, neon buzz"
+    negative_extra: ""
+    seed: 0

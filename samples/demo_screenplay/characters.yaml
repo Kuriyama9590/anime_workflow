@@ -1,0 +1,22 @@
+characters:
+  - id: detective
+    name: "侦探"
+    anchor_en: "a 35-year-old detective, short black hair, dark brown eyes, lean and tall build, upright posture, rain-soaked dark trench coat"
+    outfit_en: "dark trench coat with dark inner layer"
+    negative_extra: ""
+    assets:
+      three_view: true
+      expressions: [neutral, focused]
+      props: [leather_bag]
+  - id: client
+    name: "委托人"
+    anchor_en: "a 40-year-old mysterious figure, short black hair, black eyes, medium build, calm posture, dark suit"
+    outfit_en: "dark suit"
+    negative_extra: ""
+    assets:
+      three_view: true
+      expressions: [serious]
+      props: [letter]
+props_catalog:
+  leather_bag: "dark leather handbag"
+  letter: "single folded letter"

@@ -1,0 +1,148 @@
+comfy:
+  server: http://127.0.0.1:8188          # comfy_client.py:5；当前停机，run 各段前先做可达性预检（§4.0）
+  client_id: pipeline
+  portable_root: E:/SD-WEBUI-AKI-V5.0/ComfyUI_windows_portable
+  models_dir: E:/SD-WEBUI-AKI-V5.0/ComfyUI_windows_portable/ComfyUI/models
+  input_dirs:                             # LoadImage 需要两处都放（render_keyframes.py:10-11 实测）
+    - E:/SD-WEBUI-AKI-V5.0/ComfyUI_windows_portable/ComfyUI/user/default/input
+    - E:/SD-WEBUI-AKI-V5.0/ComfyUI_windows_portable/ComfyUI/input
+  poll_interval_s: 3
+  timeout_img_s: 900                      # render_keyframes.py:93（A 级）
+  timeout_video_s: 3600                   # render_videos.py:123（B 级设计值，首跑后再定）
+
+channels:                                 # ③ 双通道，贯穿 assets 与 keyframes
+  photo:                                  # = Sakura-Image-2.1-Turbo（Qwen 系）
+    unet_gguf: diffusion_models/Sakura-Image-2.1-Turbo-Q5_K_M-4.60GiB.gguf
+    clip: text_encoders/Sakura-TextEncoder-Qwen3VL-8B-Uncensored-bf16.safetensors
+    vae: vae/qwen_image_2.1_vae_bf16.safetensors
+    clip_type: qwen_image
+    resolution: 1024
+    width: 1344
+    height: 768
+    sampler: euler
+    sigmas: "1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0.0"
+    cfg: 1.0
+  anime:                                  # = waiIllustrious SDXL 【工作流待标定，§4.3】
+    checkpoint: checkpoints/waiIllustriousSDXL_v170.safetensors
+    width: 1344
+    height: 768
+    steps: 28
+    cfg: 5.0
+    sampler: euler_ancestral          # 服务器实测名（ComfyUI 新版 KSampler 列表无 euler_a；
+                                      # 冒烟 2026-10-27 HTTP 400 value_not_in_list 后修正）
+    img2img_denoise: 0.55                 # 末帧保身份 img2img 初始值，需 3-5 张标定
+    negative: "photo, 3d, realistic, text, watermark, bad anatomy, extra fingers, lowres"
+
+assets:                                   # §4.1 资产段专用（参考图，非成片帧）
+  width: 1024
+  height: 1024
+  candidates: 2                           # 三视图每候选数（seed、seed+1）
+
+video:                                    # 本地 MiniMax H3 fl2v —— 全节 B 级设计值
+  # 模型值一律存 models_dir 下的相对路径（含子目录：实测六件套分属 diffusion_models/
+  # text_encoders/loras/vae 四个子目录，photo unet 与 H3 unet 同在 diffusion_models）。
+  # 两种用途由 comfy.py 的 helper 统一拆分：workflow 节点入参取 basename（ComfyUI 按
+  # 自身目录解析，先例 render_videos.py:39 裸名），在盘/就绪检查取 models_dir+相对路径
+  # 拼全路径（先例 render_videos.py:18-21）——避免"拿裸文件名拼 models_dir 必 miss"。
+  unet: diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors
+  text_encoder: text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors
+  clip_type: minimax
+  lora_4step: loras/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors
+  lora_8step: loras/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors
+  lora_min_bytes: 1500000000              # 实测 4-step LoRA 有 .truncated.bak 残件，必须防（render_videos.py:32-35）
+  vae_video: vae/minimax_h3_video_vae_fp16.safetensors
+  vae_audio: vae/minimax_h3_audio_vae_fp32.safetensors
+  weight_min_bytes: 5000000000            # unet/te 各 >5GB 才算就绪（render_videos.py:85 的门，沿用）
+  sampler: res_multistep
+  scheduler: simple
+  # steps 不写死：随所选 LoRA 档位（4-step→4 / 8-step→8，render_videos.py:32-35 择优逻辑；
+  # 4-step/4 步是 videos.log 里唯一被实际选中过的档位，但未渲染成功）
+  steps_follow_lora: true
+  fps: 24
+  width: 1344
+  height: 768
+  length_grid: {a: 17, b: 5}              # 设计值：出自剧本:102 文案与 render_videos.py:48 代码字面量，
+                                          #   本机从未成功执行过任何 H3 渲染；首跑标定含 124 帧本身（§4.4）
+  k_min: 7                                # 时长域下端：124 帧 ≈ 5.167s
+  k_max: 21                               # 时长域上端：362 帧 ≈ 15.083s
+  duration_tolerance: half_step           # 命中容差 = a/fps/2 ≈ 0.354s；夹取后仍超容差 → 显式报错列最近网格点
+  default_duration_s: 5.17
+  min_request_s: 5.0                      # 请求侧校验域。"5–15s 可配"按 ±半步内命中解释：
+  max_request_s: 15.0                     #   实际可达 5.167–15.083s（k 域 [7,21]）；本会话已逐 0.5s
+                                          #   全扫 21 点验证全部命中（端点 15.0→k=21→15.083s，误差 0.083s）
+  min_bytes: 200000                       # 成片大小下限（render_videos.py:109 门，沿用为设计值）
+
+final:                                    # 本节 B 级设计值（build_final.py 从未跑完）
+  ffmpeg: ffmpeg                          # PATH 优先（已核实 8.1.1 在 PATH）；可写绝对路径
+  ffprobe: ffprobe
+  crf: 18
+  preset: medium
+  audio_codec: aac
+  audio_bitrate: 192k
+  font: C:/Windows/Fonts/msyh.ttc
+  sub_style: "FontName=Microsoft YaHei&FontSize=16&PrimaryColour=&H00F5F5F5&OutlineColour=&H80000000&BorderStyle=1&Outline=1&Shadow=0&Alignment=2&MarginV=34"
+
+camera:
+  mode_default: B                         # B=词库直通 H3（零依赖，默认）；A=Blender 运镜
+  blender:                                # 本节 C 级（Blender 未装，全部待首跑验证）
+    version: "4.2"                        # LTS；首次使用由 pipeline/blender.py 下载便携 zip、
+                                          #   用 Python zipfile 解压到 install_dir（不用 tar：已实测
+                                          #   Git Bash tar=GNU tar 1.35 不解 zip，tarfile 抛 ReadError）
+    install_dir: E:/tools/blender
+    download_base: https://download.blender.org/release/
+    # 引擎枚举存 API 名并按版本自适应：4.2–4.5 为 BLENDER_EEVEE_NEXT，≤4.1 与 5.0+ 为
+    # BLENDER_EEVEE（依据：Blender 官方 5.0 Python API 发布说明及 sketchfab/blender-plugin
+    # issue #153/#176；本机未装 Blender，未实测）。预设模板里用 try/except 双枚举写法。
+    render_engine_enum: [BLENDER_EEVEE_NEXT, BLENDER_EEVEE]
+    samples: 16
+    overscan: 1.08                        # 预留运镜裁切余量防穿帮
+    timeout_s: 600
+  llm:                                    # 模式A 的 bpy 生成；不配置则一律走预设模板
+    enabled: false
+    base_url: ""                          # OpenAI 兼容 /v1/chat/completions
+    api_key_env: LLM_API_KEY              # 只从环境变量取密钥，配置文件不落密钥
+    model: ""
+    timeout_s: 90
+    retries: 2
+    require_review: true                  # LLM 代码默认只落盘不执行，--trust-llm 才自动跑
+
+llm:                                      # 公共 LLM 客户端（pipeline/screenplay/llm_client.py；
+  enabled: false                          #   段0 编剧用；运镜模式A 之后可复用。camera 模块的
+  base_url: ""                            #   llm_bpy.py 保留不动，迁移路径见 llm_client.py 头注）
+  api_key: ""                             # 三字段为核心：base_url / api_key / model
+  api_key_env: ""                         # 非空则优先于 api_key 从该环境变量取密钥（真实密钥不落文件）
+  model: ""
+  timeout_s: 120
+  retries: 2
+  temperature: 0.7
+  # 示例①：本地 llama.cpp —— 先运行 E:/projects/推理/llama/start-llama-bonsai.bat
+  #   拉起 llama-server（Bonsai2-27B，OpenAI 兼容，监听 127.0.0.1:8010，无鉴权）：
+  # enabled: true
+  # base_url: "http://127.0.0.1:8010/v1"
+  # model: "Bonsai2-27B"                  # llama-server 通常按权重名报告模型，填权重名最稳
+  # api_key: "no-key"                     # 本地服务无鉴权，任意非空串
+  # 示例②：DeepSeek —— E:/projects/推理/deepseek-api 项目（网页版逆向代理，OpenAI 兼容，
+  #   默认 127.0.0.1:8317，PROXY_API_KEY 鉴权；模型 deepseek-chat / deepseek-reasoner）：
+  # enabled: true
+  # base_url: "http://127.0.0.1:8317/v1"
+  # model: "deepseek-chat"
+  # api_key_env: PROXY_API_KEY            # 密钥走环境变量，配置不落盘
+
+run:
+  attempts: 2                             # 总尝试次数（含首次）= render_keyframes.py:90 /
+                                          #   render_videos.py:118 的 tries=2，即"1 次 + 1 次重试"
+                                          #   （不是"重试 2 次"——那会是 3 次尝试）
+  retry_wait_s: 20
+  quiet_first_s: 5
+  # 服务器可达预检仅对需要 ComfyUI 的段执行（needs_comfy：assets/keyframes/video = true；
+  # camera = false——模式A 用 Blender、模式B 产物是纯文本 camdesc；final = false——只用 ffmpeg）。
+  # 不可达即一句提示退出（exit 2），不让 unit 空转尝试后被误标 failed（当前 8188 停机即此场景）
+  server_precheck: true
+
+paths:
+  # 相对路径基准 = 仓库根（= pipeline 包的父目录，由 config.py 用 __file__ 定位后锚定），
+  # 与命令行 cwd 无关。边界说明：本保证只覆盖"路径解析"——`python -m pipeline` 的包发现
+  # 仍需 cwd=仓库根或 PYTHONPATH 含仓库根（标准 Python 行为；仓库外实测报
+  # No module named pipeline）。设 PYTHONPATH 后从任意 cwd 调用，配置解析到同一批目录
+  projects_root: projects
+  logs_dir: logs

@@ -1,0 +1,50 @@
+{
+  "config_hash": "sha256:64e2b429a2709363fa8347f50954389891fd2a15905b6027f7f6a1830b2dd45d",
+  "project": "samples/demo",
+  "schema": 1,
+  "stage": "final",
+  "units": {
+    "assemble": {
+      "ambience": false,
+      "attempts": 1,
+      "burn": true,
+      "commands": [
+        "C:\\Users\\23817\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.EXE -y -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\camera\\S1.mp4 -f lavfi -t 4 -i anullsrc=r=32000:cl=stereo -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -ar 32000 -ac 2 -shortest E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\S1_audio.mp4",
+        "C:\\Users\\23817\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.EXE -y -f concat -safe 0 -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\concat.txt -c:v libx264 -crf 18 -preset medium -c:a aac -b:a 192k E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\_merged.mp4",
+        "C:\\Users\\23817\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.EXE -y -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\_merged.mp4 -vf drawtext=fontfile='C\\:/Windows/Fonts/msyh.ttc':textfile='.tmp/_title.txt':fontsize=58:fontcolor=white:borderw=2:bordercolor=black@0.5:x=(w-text_w)/2:y=(h-text_h)/2:expansion=none:alpha='if(lt(t,0.9),0,if(lt(t,1.5),(t-0.9)/0.6,if(lt(t,2.4),1,if(lt(t,3),(3-t)/0.6,0))))',subtitles=filename='.tmp/_burn.srt':charenc=UTF-8:fontsdir='C\\:/Windows/Fonts':force_style='FontName=Microsoft YaHei&FontSize=16&PrimaryColour=&H00F5F5F5&OutlineColour=&H80000000&BorderStyle=1&Outline=1&Shadow=0&Alignment=2&MarginV=34',fade=t=in:st=0:d=0.4 -c:v libx264 -crf 18 -preset medium -c:a copy E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\samples_demo.mp4   # cwd=E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final",
+        "C:\\Users\\23817\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.EXE -y -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\camera\\S1.mp4 -update 1 -frames:v 1 E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\S1_first_frame.png",
+        "C:\\Users\\23817\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.EXE -y -sseof -0.1 -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\camera\\S1.mp4 -update 1 -frames:v 1 E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\S1_last_frame.png",
+        "C:\\Users\\23817\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.EXE -y -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\S1_first_frame.png -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\.tmp\\S1_last_frame.png -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\keyframes\\S2_first.png -i E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\keyframes\\S2_last.png -filter_complex [0:v]scale=448:256,setsar=1,format=rgb24,drawtext=fontfile='C\\:/Windows/Fonts/msyh.ttc':fontsize=18:fontcolor=0xFFE678:x=8:y=6:box=1:boxcolor=black@0.55:boxborderw=4:expansion=none:text='S1 first'[c0];[1:v]scale=448:256,setsar=1,format=rgb24,drawtext=fontfile='C\\:/Windows/Fonts/msyh.ttc':fontsize=18:fontcolor=0xFFE678:x=8:y=6:box=1:boxcolor=black@0.55:boxborderw=4:expansion=none:text='S1 last'[c1];[2:v]scale=448:256,setsar=1,format=rgb24,drawtext=fontfile='C\\:/Windows/Fonts/msyh.ttc':fontsize=18:fontcolor=0xFFE678:x=8:y=6:box=1:boxcolor=black@0.55:boxborderw=4:expansion=none:text='S2 first'[c2];[3:v]scale=448:256,setsar=1,format=rgb24,drawtext=fontfile='C\\:/Windows/Fonts/msyh.ttc':fontsize=18:fontcolor=0xFFE678:x=8:y=6:box=1:boxcolor=black@0.55:boxborderw=4:expansion=none:text='S2 last'[c3];[c0][c1][c2][c3]concat=n=4:v=1:a=0[cells];[cells]tile=2x2:margin=6:padding=4:color=0x0C0C10[sheet] -map [sheet] -frames:v 1 E:\\projects\\推理\\R18_video\\projects\\samples\\demo\\final\\contact_sheet.png"
+      ],
+      "error": null,
+      "files": {
+        "mp4": "samples_demo.mp4",
+        "sheet": "contact_sheet.png",
+        "srt": "samples_demo.srt"
+      },
+      "inputs_hash": "sha256:c9b15a74c9af92b5eca1292ec576a975e3f276190963c014e63329ba07d06948",
+      "missing_shots": [],
+      "shot_durations": {
+        "S1": 4.0,
+        "S2": 5.167
+      },
+      "shot_offsets": {
+        "S1": 0.0,
+        "S2": 4.0
+      },
+      "stage_cfg_hash": "sha256:89964e1395579a7e890878ee49cabb074862c9e5ca3e5a9d1bb83d09c7882792",
+      "status": "done",
+      "subtitles": 2,
+      "title_card": true,
+      "total_duration_s": 9.167,
+      "updated_at": "2026-10-27T00:54:07",
+      "upstream": {
+        "mp4:S1": "S1.mp4|692329|1793033224202673400",
+        "mp4:S2": "S2.mp4|2538344|1793033521898026100",
+        "sheet:S2:sheet_first": "S2_first.png|1529697|1793033112882026200",
+        "sheet:S2:sheet_last": "S2_last.png|1316607|1793033123947869600"
+      }
+    }
+  },
+  "updated_at": "2026-10-27T00:54:07"
+}

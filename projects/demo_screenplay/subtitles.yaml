@@ -1,0 +1,17 @@
+project: demo_screenplay
+title_card:
+  text: demo_screenplay
+  t_in: 0.9
+  t_out: 3.0
+end_card:
+  text: "—— 完 ——"
+  tail_s: 4.0
+cues:
+  - shot: S1
+    t_in: 0.5
+    t_out: 1.5
+    text: "一封信。"
+  - shot: S2
+    t_in: 0.5
+    t_out: 1.7
+    text: "是谁寄来的？"

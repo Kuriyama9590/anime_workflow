@@ -1,0 +1,1 @@
+Camera: smooth lateral tracking move

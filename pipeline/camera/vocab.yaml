@@ -1,0 +1,44 @@
+# 运镜提示词词库（模式B）：move × intensity → 英文短语
+# 产物是一行 "Camera: <短语>[, <extra>]"（S#_camdesc.txt），由 video 段拼进 H3 提示词。
+# 短语种子取自《雨落无声》shots_video.json 既有文案（S1/S2/S3/S4/S6/S10），
+# 该提示词从未被 H3 实际消费过（设计文档 §4.3），效果随 video 段首跑一并标定。
+# 语法限制：块风格嵌套映射；值一律双引号；注释只支持整行（不支持行尾注释）。
+version: 1
+default_intensity: "medium"
+intensities:
+  - "slow"
+  - "medium"
+  - "fast"
+moves:
+  push_in:
+    slow: "very slow push-in, breathing hand-held stillness"
+    medium: "slow steady push-in into a closer framing"
+    fast: "abrupt crash push-in, slight handheld shake"
+  pull_out:
+    slow: "very slow pull-back revealing the surroundings"
+    medium: "steady pull-back"
+    fast: "quick pull-out"
+  pan:
+    slow: "slow pan following the subject's turn"
+    medium: "smooth pan across the scene"
+    fast: "fast whip pan"
+  truck:
+    slow: "slow lateral tracking move"
+    medium: "smooth lateral tracking move"
+    fast: "fast lateral tracking move"
+  follow:
+    slow: "gentle follow, steady hand-held"
+    medium: "steady follow from behind"
+    fast: "urgent chase follow, handheld shake"
+  orbit:
+    slow: "very slow orbit around the subject"
+    medium: "smooth orbiting arc around the subject"
+    fast: "fast orbit around the subject"
+  parallax:
+    slow: "subtle 2.5D parallax drift, gentle depth separation"
+    medium: "2.5D parallax move with clear depth separation"
+    fast: "strong 2.5D parallax sweep"
+  locked:
+    slow: "locked-off, only the scene moves"
+    medium: "locked-off, only the scene moves"
+    fast: "locked-off, only the scene moves"

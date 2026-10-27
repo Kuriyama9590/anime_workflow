@@ -1,0 +1,7 @@
+# 字幕/标题卡 cues（final 段消费）。t_in/t_out 为镜内秒；final 会按各镜时长算全局偏移。
+# 冒烟样例：1 条演示字幕（挂在进入成片的 S2 上）+ 标题/结尾卡（脚手架默认形态）。
+project: samples/demo
+title_card: {text: "沉舟侦探社·冒烟样片", t_in: 0.9, t_out: 3.0}
+end_card: {text: "—— 完 ——", tail_s: 4.0}
+cues:
+  - {shot: S2, t_in: 0.8, t_out: 3.2, text: "雨夜的街角，线索就藏在灯火明灭之间。"}

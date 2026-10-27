@@ -1,0 +1,16 @@
+# 角色一致性锚点 + 资产需求清单（schema 见 docs/FRAMEWORK_DESIGN.md §6）。
+# id 用 ASCII（文件名安全），name 中文；anchor_en 是全链拼接的英文一致性锚点。
+# 冒烟样例：中性侦探题材，成年角色、全身着装（assets 段内容边界硬约定）。
+characters:
+  - id: detective
+    name: 侦探·沉舟
+    anchor_en: "a 35-year-old male private detective, short black hair greying slightly at the temples, calm tired grey eyes, lean sturdy build, composed serious expression"
+    outfit_en: "long beige trench coat worn over a dark grey suit with white shirt and dark tie, brown leather briefcase carried in one hand"
+    negative_extra: "child, teenager, elderly, female, nudity"
+    assets:                    # 冒烟预算：仅三视图（photo 通道 2 候选 = 2 张，双通道各≤2 张）
+      three_view: true
+      expressions: []
+      props: []
+props_catalog:                 # 道具锚点仅用于提示词拼接（不生成道具图，控制成本）
+  briefcase: "worn brown leather briefcase with brass clasps"
+  case_file: "bulging manila case folder stuffed with documents and photographs"

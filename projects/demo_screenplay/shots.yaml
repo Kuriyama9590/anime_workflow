@@ -1,0 +1,53 @@
+project: demo_screenplay
+style: photo
+defaults:
+  duration_s: 5.17
+  camera:
+    mode: B
+    move: push_in
+    intensity: slow
+shots:
+  - id: S1
+    title: "雨夜街角"
+    duration_s: 5.17
+    characters: [detective]
+    scene: "A dimly lit rainy street at night with neon reflections on wet pavement"
+    scene_zh: "雨夜中灯光微弱的街道，地面湿滑反射着霓虹灯光"
+    first: "A rain-soaked detective in a dark trench coat stands in the dimly lit street at night, holding a dark leather bag."
+    first_zh: "身穿深色风衣、被雨水打湿的侦探在夜晚昏暗的街道上站立，手中提着一只深色皮质手包。"
+    last: "The detective's hand moves to open the leather bag."
+    last_zh: "侦探的手移向深色皮质手包，准备打开。"
+    last_mode: edit
+    use_char_ref: false
+    camera:
+      mode: B
+      move: follow
+      intensity: medium
+      extra: ""
+    motion: "[0s-5.17s] The detective slowly lifts the leather bag from his hand, raindrops reflecting on the coat's fabric."
+    motion_zh: "侦探缓缓将深色皮质手包从手中提起，风衣面料上反射着雨滴。"
+    audio_hint: "rain sound"
+    negative_extra: ""
+    seed: 0
+  - id: S2
+    title: "打开信件"
+    duration_s: 5.17
+    characters: [detective]
+    scene: "Close-up of the detective's hands and face in the rainy street at night"
+    scene_zh: "雨夜中侦探手部与面部的特写"
+    first: "The detective's hand opens the leather bag."
+    first_zh: "侦探的手打开深色皮质手包。"
+    last: "A letter is revealed inside the bag, the detective's eyes narrow slightly."
+    last_zh: "手包内露出一封信，侦探的眉头微微皱起。"
+    last_mode: edit
+    use_char_ref: false
+    camera:
+      mode: B
+      move: push_in
+      intensity: slow
+      extra: ""
+    motion: "[0s-5.17s] The detective's fingers gently take out a letter from the bag, his gaze focused on the paper."
+    motion_zh: "侦探的指尖轻轻从手包中取出一封信，目光聚焦在纸张上。"
+    audio_hint: "paper rustling"
+    negative_extra: ""
+    seed: 0

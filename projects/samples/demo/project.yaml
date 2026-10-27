@@ -1,0 +1,13 @@
+# 项目配置（docs/FRAMEWORK_DESIGN.md §2.2）。overrides 节按路径深合并进全局配置：
+# 映射递归、标量覆盖、列表整体替换；本文件其余字段是项目元数据，不进全局合并。
+name: samples/demo
+style: photo                    # 项目默认通道（anime|photo），单镜可在 shots.yaml 覆盖
+seed_base: 20261000               # §3 规则 4：全段 seed 派生基准（迁移老项目时逐镜写显式 seed）
+style_anchors:                    # 画风锚点按通道各备一套，拼进所有图像提示词
+  photo: "cinematic noir detective film still, moody chiaroscuro lighting, muted blue-grey palette with warm tungsten accents, film grain, shallow depth of field, 16:9 widescreen composition"
+  anime: "masterpiece anime illustration, cinematic noir detective atmosphere, cel shading, rain and neon reflections, film grain"
+negative_anchors:                 # 负面锚点同理
+  photo: "photorealistic, 3d render, western cartoon, text, watermark, logo, signature, extra fingers, deformed hands, extra limbs, bad anatomy, blurry, lowres, cropped"
+  anime: "photo, 3d render, text, watermark, bad anatomy, extra fingers, blurry, lowres"
+overrides:
+  video: {default_duration_s: 5.17}

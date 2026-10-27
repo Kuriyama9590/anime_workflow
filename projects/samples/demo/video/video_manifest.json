@@ -1,0 +1,46 @@
+{
+  "config_hash": "sha256:5d027d42ac2f3745455d2077fe8ded108d9bb9472a4d318d7c3749ced885a0b7",
+  "project": "samples/demo",
+  "schema": 1,
+  "stage": "video",
+  "units": {
+    "S2": {
+      "attempts": 1,
+      "duration_s": 5.17,
+      "eff_s": 5.166666666666667,
+      "error": null,
+      "files": {
+        "mp4": "S2.mp4"
+      },
+      "fps": 24,
+      "height": 768,
+      "inputs_hash": "sha256:01b2856fd425beb516be636e92fe316bc0d0b1063a4bb6c54d26f9aab6f770f9",
+      "length": 124,
+      "lora": "minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors",
+      "prompt": "a rain-soaked city street corner at night, neon shop signs reflecting in puddles, distant traffic lights smeared by rain\n\nTimeline:\n[0s-2s] rain falls steadily, neon reflections ripple in the puddles\n[2s-5s] the detective turns and walks into the rain, coat hem swaying, tail lights fading\n\nCamera: smooth lateral tracking move\nAudio: steady rain, distant traffic, neon buzz\nNo text, no subtitles, no watermark. Keep the character design consistent.",
+      "prompt_id": "b0e4578a-edc6-45ea-8e58-4779ee05fc1f",
+      "prompt_source": {
+        "audio_included": true,
+        "camera_line_source": "camdesc_file",
+        "notes": [],
+        "scene_source": "scene",
+        "style": "anime"
+      },
+      "render_elapsed_s": 284.8,
+      "render_minutes": 4.75,
+      "seed": 22261002,
+      "seed_derived": true,
+      "stage_cfg_hash": "sha256:5d027d42ac2f3745455d2077fe8ded108d9bb9472a4d318d7c3749ced885a0b7",
+      "status": "done",
+      "steps": 4,
+      "updated_at": "2026-10-27T00:47:17",
+      "upstream": {
+        "camdesc": "sha256:9ceb3e44990cfa1569cfa5c04a4983cf00c876aa4219bad0eae8033de071db4c",
+        "first_png": "S2_first.png|1529697|1793033112882026200",
+        "last_png": "S2_last.png|1316607|1793033123947869600"
+      },
+      "width": 1344
+    }
+  },
+  "updated_at": "2026-10-27T00:52:01"
+}

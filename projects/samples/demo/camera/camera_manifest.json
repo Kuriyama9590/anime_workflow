@@ -1,0 +1,37 @@
+{
+  "config_hash": "sha256:64e2b429a2709363fa8347f50954389891fd2a15905b6027f7f6a1830b2dd45d",
+  "project": "samples/demo",
+  "schema": 1,
+  "stage": "camera",
+  "units": {
+    "S1": {
+      "attempts": 0,
+      "error": null,
+      "files": {
+        "camdesc": "S1_camdesc.txt"
+      },
+      "inputs_hash": "sha256:e56512663fe4a3bc17a90686db0450fd6ddb0a6d5dd330db65a4b614f1f9c5a1",
+      "mode": "B",
+      "prompt_id": null,
+      "seed": null,
+      "stage_cfg_hash": "sha256:15cba6fa05df7cbc130aaa7b50762fbf2b7bc7d3364e1614be80377f36031cda",
+      "status": "done",
+      "updated_at": "2026-10-27T00:45:37"
+    },
+    "S2": {
+      "attempts": 0,
+      "error": null,
+      "files": {
+        "camdesc": "S2_camdesc.txt"
+      },
+      "inputs_hash": "sha256:a8e7e216eef9d61585db56bc1ce2d085aec0b515555d7fc148b6ea4a44f8a773",
+      "mode": "B",
+      "prompt_id": null,
+      "seed": null,
+      "stage_cfg_hash": "sha256:15cba6fa05df7cbc130aaa7b50762fbf2b7bc7d3364e1614be80377f36031cda",
+      "status": "done",
+      "updated_at": "2026-10-27T00:45:37"
+    }
+  },
+  "updated_at": "2026-10-27T00:45:42"
+}

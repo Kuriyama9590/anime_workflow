@@ -1,0 +1,31 @@
+{
+  "candidate": 1,
+  "channel": "photo",
+  "char_id": "detective",
+  "height": 1024,
+  "kind": "threeview",
+  "model": {
+    "clip": "text_encoders/Sakura-TextEncoder-Qwen3VL-8B-Uncensored-bf16.safetensors",
+    "clip_type": "qwen_image",
+    "unet_gguf": "diffusion_models/Sakura-Image-2.1-Turbo-Q5_K_M-4.60GiB.gguf",
+    "vae": "vae/qwen_image_2.1_vae_bf16.safetensors"
+  },
+  "module": "pipeline.stages.assets",
+  "negative": "photorealistic, 3d render, western cartoon, text, watermark, logo, signature, extra fingers, deformed hands, extra limbs, bad anatomy, blurry, lowres, cropped, child, teenager, elderly, female, nudity, nude, naked, topless, bottomless, nsfw, explicit content, lingerie, swimsuit, see-through clothing, suggestive pose, sexual content, partially undressed, missing clothes",
+  "picked": false,
+  "picked_from": null,
+  "prompt": "character reference sheet, front view / side view / back view, standing full body, standard outfit, neutral flat background, three views of the same one character with consistent design and proportions, fully clothed in the standard outfit, modest neutral content, safe for work design sheet, a 35-year-old male private detective, short black hair greying slightly at the temples, calm tired grey eyes, lean sturdy build, composed serious expression, long beige trench coat worn over a dark grey suit with white shirt and dark tie, brown leather briefcase carried in one hand, cinematic noir detective film still, moody chiaroscuro lighting, muted blue-grey palette with warm tungsten accents, film grain, shallow depth of field, 16:9 widescreen composition",
+  "prompt_id": "531acde6-acbf-4a58-879f-8296ee17821e",
+  "rendered_at": "2026-10-27T00:41:01",
+  "sampler": {
+    "cfg": 1.0,
+    "resolution": 1024,
+    "sampler": "euler",
+    "sigmas": "1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0.0",
+    "sigmas_steps": 9
+  },
+  "schema": 1,
+  "seed": 21262010,
+  "unit": "detective:threeview",
+  "width": 1024
+}

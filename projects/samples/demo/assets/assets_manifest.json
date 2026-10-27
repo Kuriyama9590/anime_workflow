@@ -1,0 +1,47 @@
+{
+  "config_hash": "sha256:a044d7206f14b7cafe2bdf30a543bc7e34d23d20b5a696b8733f6ccd7ce34335",
+  "project": "demo",
+  "schema": 1,
+  "stage": "assets",
+  "units": {
+    "detective:threeview": {
+      "attempts": 1,
+      "channel": "photo",
+      "error": null,
+      "files": {
+        "c1": "detective_threeview_c1.png",
+        "c2": "detective_threeview_c2.png",
+        "threeview": "detective_threeview.png"
+      },
+      "inputs_hash": "sha256:8eba961c95b8ae33c77c8d0da609d7b260250aeb613b22185570eb64b59d3d5d",
+      "picked": true,
+      "picked_candidate": 1,
+      "plan": {
+        "channel": "photo",
+        "dests": [
+          "detective_threeview_c1.png",
+          "detective_threeview_c2.png"
+        ],
+        "height": 1024,
+        "kind": "threeview",
+        "negative": "photorealistic, 3d render, western cartoon, text, watermark, logo, signature, extra fingers, deformed hands, extra limbs, bad anatomy, blurry, lowres, cropped, child, teenager, elderly, female, nudity, nude, naked, topless, bottomless, nsfw, explicit content, lingerie, swimsuit, see-through clothing, suggestive pose, sexual content, partially undressed, missing clothes",
+        "prompt": "character reference sheet, front view / side view / back view, standing full body, standard outfit, neutral flat background, three views of the same one character with consistent design and proportions, fully clothed in the standard outfit, modest neutral content, safe for work design sheet, a 35-year-old male private detective, short black hair greying slightly at the temples, calm tired grey eyes, lean sturdy build, composed serious expression, long beige trench coat worn over a dark grey suit with white shirt and dark tie, brown leather briefcase carried in one hand, cinematic noir detective film still, moody chiaroscuro lighting, muted blue-grey palette with warm tungsten accents, film grain, shallow depth of field, 16:9 widescreen composition",
+        "seeds": [
+          21262010,
+          21262011
+        ],
+        "width": 1024
+      },
+      "prompt_id": "0edcb3eb-2d86-48e7-ac01-8791d91f1527",
+      "prompt_ids": {
+        "c1": "531acde6-acbf-4a58-879f-8296ee17821e",
+        "c2": "0edcb3eb-2d86-48e7-ac01-8791d91f1527"
+      },
+      "seed": 21262010,
+      "stage_cfg_hash": "sha256:a044d7206f14b7cafe2bdf30a543bc7e34d23d20b5a696b8733f6ccd7ce34335",
+      "status": "done",
+      "updated_at": "2026-10-27T00:41:24"
+    }
+  },
+  "updated_at": "2026-10-27T00:41:24"
+}
